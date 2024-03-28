@@ -12,7 +12,6 @@ const app = createApp({
             slides: slides,
             activeSlide: 0,
             sliderAnimation: null,
-            //stopSliderFlag: false,
         }
     },
     methods: {
