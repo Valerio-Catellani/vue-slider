@@ -2,23 +2,43 @@ import { slides } from "./data.js";
 console.log(slides);
 
 const { createApp } = Vue;
-createApp({
+console.log(Vue);
+
+
+
+const app = createApp({
     data() {
         return {
             slides: slides,
             activeSlide: 0,
+            sliderAnimation: null,
+            //stopSliderFlag: false,
         }
     },
     methods: {
         nextSlide() {
-            console.log('next');
             this.activeSlide < this.slides.length - 1 ? this.activeSlide++ : this.activeSlide = 0;
         },
         prevSlide() {
-            console.log('prev');
             this.activeSlide > 0 ? this.activeSlide-- : this.activeSlide = this.slides.length - 1;
+        },
+        stopSlider() {
+            clearInterval(this.sliderAnimation);
+        },
+        startSlider() {
+            this.sliderAnimation = setInterval(() => {
+                this.nextSlide();
+            }, 2000);
         }
+
+
     },
     mounted() {
+        this.startSlider();
     }
-}).mount("#app")
+})
+
+
+app.mount("#app")
+
+
